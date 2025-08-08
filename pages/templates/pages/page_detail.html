@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ page.title }}</h2>
+<h4>{{ page.subtitle }}</h4>
+{% if page.image %}
+<img src="{{ page.image.url }}" alt="Imagem da página" style="max-width:400px"/>
+{% endif %}
+<div>{{ page.content|safe }}</div>
+<p>Criado em {{ page.created_at|date:"d/m/Y H:i" }}</p>
+<a href="{% url 'page_edit' page.pk %}">Editar</a> | <a href="{% url 'page_delete' page.pk %}">Excluir</a>
+<a href="{% url 'page_list' %}">Voltar</a>
+{% endblock %}

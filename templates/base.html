@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>MinhaPrimeiraPaginaCamargo</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'page_list' %}">Home</a> |
+    <a href="{% url 'inbox' %}">Mensagens</a> |
+    {% if user.is_authenticated %}
+        Olá, {{ user.username }} |
+        <a href="{% url 'logout' %}">Sair</a>
+    {% else %}
+        <a href="{% url 'login' %}">Entrar</a> |
+        <a href="{% url 'register' %}">Registrar</a>
+    {% endif %}
+</nav>
+<hr>
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% block content %}{% endblock %}
+</body>
+</html>

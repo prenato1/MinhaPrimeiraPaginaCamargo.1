@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Caixa de Entrada</h2>
+<a href="{% url 'send_message' %}">Enviar Mensagem</a>
+<ul>
+{% for msg in messages %}
+<li><strong>De:</strong> {{ msg.sender }} em {{ msg.created_at|date:"d/m/Y H:i" }}<br>{{ msg.text }}</li>
+{% empty %}
+<li>Você não tem mensagens.</li>
+{% endfor %}
+</ul>
+{% endblock %}
